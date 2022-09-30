@@ -1,7 +1,7 @@
 package github.erb3.plugin.hugger.command;
 
-import net.md_5.bungee.api.ChatColor;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -13,18 +13,19 @@ public class Hug implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 
         if (!(args.length > 0)) {
-            return false;
+            sender.sendMessage(ChatColor.DARK_RED + "[Hugger] Syntax: /hug [player]");
+            return true;
         }
 
         Player pTo = Bukkit.getPlayer(args[0]);
 
         if (pTo == null) {
-            sender.sendMessage("The player specified dosent exist!");
+            sender.sendMessage(ChatColor.DARK_RED + "[Hugger] The player specified doesn't exist!");
             return true;
         }
 
-        pTo.sendMessage("You got hugged by: " + sender.getName());
-        sender.sendMessage("Hugging: " + pTo.getDisplayName());
+        pTo.sendMessage(ChatColor.RED + "You got hugged by: " + sender.getName() + "! ❤");
+        sender.sendMessage(ChatColor.RED + "❤ Hugging: " + pTo.getName());
         return true;
     }
 }
