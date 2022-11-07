@@ -6,14 +6,21 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public class Main extends JavaPlugin {
 
+    public Configurator conf = new Configurator(this);
+
     @Override
     public void onEnable() {
         Bukkit.getLogger().info("Enabling Hugger!");
-        this.getCommand("hug").setExecutor(new Hug());
+
+        conf.createConfig();
+
+        this.getCommand("hug").setExecutor(new Hug(this.conf));
     }
 
     @Override
     public void onDisable() {
         Bukkit.getLogger().info("Disabling Hugger!");
+
+        conf.saveConfig();
     }
 }

@@ -1,5 +1,7 @@
 package github.erb3.plugin.hugger.command;
 
+import github.erb3.plugin.hugger.Configurator;
+import github.erb3.plugin.hugger.utils.Colorify;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
@@ -8,6 +10,11 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 public class Hug implements CommandExecutor {
+
+    private final Configurator conf;
+    public Hug(Configurator conf) {
+        this.conf = conf;
+    }
 
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
@@ -24,7 +31,7 @@ public class Hug implements CommandExecutor {
             return true;
         }
 
-        pTo.sendMessage(ChatColor.RED + "You got hugged by: " + sender.getName() + "! ❤");
+        pTo.sendMessage(Colorify.color(this.conf.getStringValue("translation.youGotHugged")));
         sender.sendMessage(ChatColor.RED + "❤ Hugging: " + pTo.getName());
         return true;
     }
