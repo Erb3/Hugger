@@ -9,7 +9,6 @@ public class Configurator {
 
     public Configurator(Plugin pl) {
         this.pl = pl;
-        // this.config = pl.getConfig();
     }
 
     public void createConfig() {

@@ -1,2 +1,5 @@
 translation:
   youGotHugged: "&3Hugger &8>> &7You got hugged by: %s"
+  huggingPlayer: "&3Hugger &8>> &7Hugging: %s"
+  syntaxError: "&3Hugger &8>> &cSyntax Error. Usage: /hug [player]"
+  playerNotFoundError: "&3Hugger &8>> &7The player you specified is not currently online"

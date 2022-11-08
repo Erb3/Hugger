@@ -20,19 +20,19 @@ public class Hug implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 
         if (!(args.length > 0)) {
-            sender.sendMessage(ChatColor.DARK_RED + "[Hugger] Syntax: /hug [player]");
+            sender.sendMessage(Colorify.color(this.conf.getStringValue("translation.syntaxError")));
             return true;
         }
 
         Player pTo = Bukkit.getPlayer(args[0]);
 
         if (pTo == null) {
-            sender.sendMessage(ChatColor.DARK_RED + "[Hugger] The player specified doesn't exist!");
+            sender.sendMessage(Colorify.color(this.conf.getStringValue("translation.playerNotFoundError")));
             return true;
         }
 
         pTo.sendMessage(Colorify.color(this.conf.getStringValue("translation.youGotHugged")));
-        sender.sendMessage(ChatColor.RED + "❤ Hugging: " + pTo.getName());
+        sender.sendMessage(Colorify.color(this.conf.getStringValue("translation.huggingPlayer")));
         return true;
     }
 }
