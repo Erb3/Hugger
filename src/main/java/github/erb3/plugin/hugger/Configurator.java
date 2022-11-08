@@ -5,17 +5,16 @@ import org.bukkit.plugin.Plugin;
 
 public class Configurator {
     private final Plugin pl;
-    private final FileConfiguration config;
+    private FileConfiguration config;
 
     public Configurator(Plugin pl) {
         this.pl = pl;
-        this.config = pl.getConfig();
+        // this.config = pl.getConfig();
     }
 
     public void createConfig() {
-        this.config.addDefault("translation.youGotHugged", "&3Hugger &8>> &7You got hugged by: %s");
-
         this.pl.saveDefaultConfig();
+        this.config = pl.getConfig();
     }
 
     public void saveConfig() {
