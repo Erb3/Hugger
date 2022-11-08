@@ -1,7 +1,6 @@
 package github.erb3.plugin.hugger.command;
 
 import github.erb3.plugin.hugger.Configurator;
-import github.erb3.plugin.hugger.utils.Colorify;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -18,15 +17,16 @@ public class Hug implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 
+        // Check if there are arguments
         if (!(args.length > 0)) {
-            sender.sendMessage(Colorify.color(this.conf.getStringValue("translation.syntaxError")));
+            sender.sendMessage(this.conf.getString("translation.syntaxError"));
             return true;
         }
 
+        // Check if player exists
         Player pTo = Bukkit.getPlayer(args[0]);
-
         if (pTo == null) {
-            sender.sendMessage(Colorify.color(this.conf.getStringValue("translation.playerNotFoundError")));
+            sender.sendMessage(this.conf.getString("translation.playerNotFoundError"));
             return true;
         }
 
@@ -35,8 +35,9 @@ public class Hug implements CommandExecutor {
         if (sender instanceof Player) pFrom = ((Player) sender).getDisplayName();
         else pFrom = "&d" + sender.getName();
 
-        pTo.sendMessage(Colorify.color(String.format(this.conf.getStringValue("translation.youGotHugged"), pFrom)));
-        sender.sendMessage(Colorify.color(String.format(this.conf.getStringValue("translation.huggingPlayer"), pTo.getDisplayName())));
+        // Send chat messages
+        pTo.sendMessage(this.conf.getString("translation.youGotHugged", pFrom));
+        sender.sendMessage(this.conf.getString("translation.huggingPlayer", pTo.getDisplayName()));
         return true;
     }
 }

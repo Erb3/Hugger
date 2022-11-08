@@ -1,5 +1,6 @@
 package github.erb3.plugin.hugger;
 
+import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.Plugin;
 
@@ -20,7 +21,11 @@ public class Configurator {
         this.pl.saveConfig();
     }
 
-    public String getStringValue(String key) {
+    public String getRawStringValue(String key) {
         return this.config.getString(key);
+    }
+
+    public String getString(String key, String... args) {
+        return ChatColor.translateAlternateColorCodes('&', String.format(getRawStringValue(key), (Object[]) args));
     }
 }
