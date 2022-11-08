@@ -26,6 +26,14 @@ public class Configurator {
     }
 
     public String getString(String key, String... args) {
-        return ChatColor.translateAlternateColorCodes('&', String.format(getRawStringValue(key), (Object[]) args));
+        if (args == null || args.length == 0) {
+            return ChatColor.translateAlternateColorCodes('&', getRawStringValue(key));
+        } else {
+            return ChatColor.translateAlternateColorCodes('&', String.format(getRawStringValue(key), (Object[]) args));
+        }
+    }
+
+    public Boolean getBoolean(String key) {
+        return this.config.getBoolean(key);
     }
 }

@@ -1,3 +1,4 @@
+enabled: false
 translation:
   youGotHugged: "&3Hugger &8>> &7You got hugged by: %s"
   huggingPlayer: "&3Hugger &8>> &7Hugging: %s"

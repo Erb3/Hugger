@@ -12,9 +12,15 @@ public class Main extends JavaPlugin {
     public void onEnable() {
         Bukkit.getLogger().info("Enabling Hugger!");
 
-        conf.createConfig();
+        this.conf.createConfig();
 
-        this.getCommand("hug").setExecutor(new Hug(this.conf));
+        if (!this.conf.getBoolean("enabled")) {
+            Bukkit.getLogger().info("Hugging has been disabled in its config. You can re-enable it in plugins/hugger/config.yml");
+            this.getServer().getPluginManager().disablePlugin(this);
+        } else {
+            this.getCommand("hug").setExecutor(new Hug(this.conf));
+        }
+
     }
 
     @Override
