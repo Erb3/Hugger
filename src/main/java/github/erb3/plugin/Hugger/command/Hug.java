@@ -1,6 +1,6 @@
-package github.erb3.plugin.hugger.command;
+package github.erb3.plugin.Hugger.command;
 
-import github.erb3.plugin.hugger.Configurator;
+import github.erb3.plugin.Hugger.Configurator;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;

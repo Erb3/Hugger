@@ -1,9 +1,9 @@
-main: github.erb3.plugin.hugger.Main
-name: hugger
+main: github.erb3.plugin.Hugger.Main
+name: Hugger
 version: 1.0.0
 description: 'A plugin that lets you give hugs!'
 author: 'Erb3'
-prefix: hugger
+prefix: Hugger
 api-version: 1.19
 api: 1.19
 commands:

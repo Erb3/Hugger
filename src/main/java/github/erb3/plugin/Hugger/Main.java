@@ -1,6 +1,6 @@
-package github.erb3.plugin.hugger;
+package github.erb3.plugin.Hugger;
 
-import github.erb3.plugin.hugger.command.Hug;
+import github.erb3.plugin.Hugger.command.Hug;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
