@@ -3,7 +3,6 @@ package github.erb3.plugin.hugger.command;
 import github.erb3.plugin.hugger.Configurator;
 import github.erb3.plugin.hugger.utils.Colorify;
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -31,8 +30,13 @@ public class Hug implements CommandExecutor {
             return true;
         }
 
-        pTo.sendMessage(Colorify.color(this.conf.getStringValue("translation.youGotHugged")));
-        sender.sendMessage(Colorify.color(this.conf.getStringValue("translation.huggingPlayer")));
+        // Add extra check in case of getting hugged from Console.
+        String pFrom;
+        if (sender instanceof Player) pFrom = ((Player) sender).getDisplayName();
+        else pFrom = "&d" + sender.getName();
+
+        pTo.sendMessage(Colorify.color(String.format(this.conf.getStringValue("translation.youGotHugged"), pFrom)));
+        sender.sendMessage(Colorify.color(String.format(this.conf.getStringValue("translation.huggingPlayer"), pTo.getDisplayName())));
         return true;
     }
 }
