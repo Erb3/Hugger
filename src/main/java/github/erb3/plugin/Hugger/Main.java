@@ -18,17 +18,19 @@ public class Main extends JavaPlugin {
         if (!this.conf.getBoolean("enabled")) {
             Bukkit.getLogger().warning("Hugging has been disabled in its config. You can re-enable it in plugins/hugger/config.yml");
             this.getServer().getPluginManager().disablePlugin(this);
-        } else {
-            PluginCommand hugCmd = this.getCommand("hug");
-
-            if (hugCmd == null ) {
-                Bukkit.getLogger().warning("/Hug not registered in plugin.yml? Please contact the mod developers. This is not supposed to happen!");
-                this.getServer().getPluginManager().disablePlugin(this);
-                return;
-            }
-
-            hugCmd.setExecutor(new Hug(this.conf));
+            return;
         }
+
+        PluginCommand hugCmd = this.getCommand("hug");
+
+        if (hugCmd == null) {
+            Bukkit.getLogger().warning("/Hug not registered in plugin.yml? Please contact the mod developers. This is not supposed to happen!");
+            this.getServer().getPluginManager().disablePlugin(this);
+            return;
+        }
+
+        hugCmd.setExecutor(new Hug(this.conf));
+
 
     }
 
