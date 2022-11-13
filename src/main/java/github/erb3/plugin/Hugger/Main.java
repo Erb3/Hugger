@@ -1,6 +1,7 @@
 package github.erb3.plugin.Hugger;
 
 import github.erb3.plugin.Hugger.command.Hug;
+import github.erb3.plugin.Hugger.command.HugTabCompleter;
 import github.erb3.plugin.Hugger.command.Hugger;
 import github.erb3.plugin.Hugger.command.HuggerTabCompleter;
 import org.bukkit.Bukkit;
@@ -35,6 +36,7 @@ public class Main extends JavaPlugin {
         }
 
         hugCmd.setExecutor(new Hug(this.conf));
+        hugCmd.setTabCompleter(new HugTabCompleter());
         huggerCmd.setExecutor(new Hugger(this));
         huggerCmd.setTabCompleter(new HuggerTabCompleter());
 
