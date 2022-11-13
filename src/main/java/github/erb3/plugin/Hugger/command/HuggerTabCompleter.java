@@ -1,4 +1,4 @@
-package github.erb3.plugin.Hugger.command.Hugger;
+package github.erb3.plugin.Hugger.command;
 
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;

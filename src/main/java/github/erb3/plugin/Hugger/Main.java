@@ -1,8 +1,8 @@
 package github.erb3.plugin.Hugger;
 
 import github.erb3.plugin.Hugger.command.Hug;
-import github.erb3.plugin.Hugger.command.Hugger.Hugger;
-import github.erb3.plugin.Hugger.command.Hugger.HuggerTabCompleter;
+import github.erb3.plugin.Hugger.command.Hugger;
+import github.erb3.plugin.Hugger.command.HuggerTabCompleter;
 import org.bukkit.Bukkit;
 import org.bukkit.command.PluginCommand;
 import org.bukkit.plugin.java.JavaPlugin;
