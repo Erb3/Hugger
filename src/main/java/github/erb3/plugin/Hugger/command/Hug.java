@@ -19,14 +19,14 @@ public class Hug implements CommandExecutor {
 
         // Check if there are arguments
         if (!(args.length > 0)) {
-            sender.sendMessage(this.conf.getString("translation.syntaxError"));
+            sender.sendMessage(this.conf.getFormattedString("translation.hugSyntaxError"));
             return true;
         }
 
         // Check if player exists
         Player pTo = Bukkit.getPlayer(args[0]);
         if (pTo == null) {
-            sender.sendMessage(this.conf.getString("translation.playerNotFoundError"));
+            sender.sendMessage(this.conf.getFormattedString("translation.playerNotFoundError"));
             return true;
         }
 
@@ -36,8 +36,8 @@ public class Hug implements CommandExecutor {
         else pFrom = "&d" + sender.getName();
 
         // Send chat messages
-        pTo.sendMessage(this.conf.getString("translation.youGotHugged", pFrom));
-        sender.sendMessage(this.conf.getString("translation.huggingPlayer", pTo.getDisplayName()));
+        pTo.sendMessage(this.conf.getFormattedString("translation.youGotHugged", pFrom));
+        sender.sendMessage(this.conf.getFormattedString("translation.huggingPlayer", pTo.getDisplayName()));
         return true;
     }
 }

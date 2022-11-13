@@ -10,3 +10,6 @@ commands:
   hug:
     description: Hugs a player
     usage: /hug [player]
+  hugger:
+    description: A command to learn about hugger, and edit config.
+    usage: /hugger [sub-command] [arguments]

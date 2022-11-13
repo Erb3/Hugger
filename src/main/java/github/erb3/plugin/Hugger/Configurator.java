@@ -17,23 +17,20 @@ public class Configurator {
         this.config = pl.getConfig();
     }
 
-    public void saveConfig() {
-        this.pl.saveConfig();
+    public void reload() {
+        this.pl.reloadConfig();
+        this.config = this.pl.getConfig();
     }
 
-    public String getRawStringValue(String key) {
+    public String getRawString(String key) {
         return this.config.getString(key);
     }
 
-    public String getString(String key, String... args) {
+    public String getFormattedString(String key, String... args) {
         if (args == null || args.length == 0) {
-            return ChatColor.translateAlternateColorCodes('&', getRawStringValue(key));
+            return ChatColor.translateAlternateColorCodes('&', getRawString(key));
         } else {
-            return ChatColor.translateAlternateColorCodes('&', String.format(getRawStringValue(key), (Object[]) args));
+            return ChatColor.translateAlternateColorCodes('&', String.format(getRawString(key), (Object[]) args));
         }
-    }
-
-    public Boolean getBoolean(String key) {
-        return this.config.getBoolean(key);
     }
 }
