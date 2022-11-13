@@ -15,7 +15,7 @@ public class Hugger implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
         Config config = new Config(main);
-        Help help = new Help(main);
+        Help help = new Help();
 
         if (args.length == 0) {
             return help.onCommand(sender, cmd, label, args);

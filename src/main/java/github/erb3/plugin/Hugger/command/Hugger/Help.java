@@ -1,17 +1,10 @@
 package github.erb3.plugin.Hugger.command.Hugger;
 
-import github.erb3.plugin.Hugger.Main;
 import net.md_5.bungee.api.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 
 public class Help implements Subcommand{
-
-    private final Main main;
-    public Help(Main main) {
-        this.main = main;
-    }
-
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
         sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "\n        &8<< &3Hugger &7by &6Erb3 & Contributors &8>>" +
                 "\n  &3>> &7/hug &d[player]" +

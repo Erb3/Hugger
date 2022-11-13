@@ -5,3 +5,4 @@ translation:
   hugSyntaxError: "&3Hugger &8>> &cSyntax Error. Usage: /hug [player]"
   playerNotFoundError: "&3Hugger &8>> &7The player you specified is not currently online"
   configReloaded: "&3Hugger &8>> &7Configuration successfully reloaded!"
+  incorrectUsage: "&3Hugger &8>> &cIncorrect usage of command. Refer to `/hugger help` for syntax"

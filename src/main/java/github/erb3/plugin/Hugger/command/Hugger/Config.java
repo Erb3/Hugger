@@ -12,7 +12,7 @@ public class Config implements Subcommand {
 
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
         if (args.length < 2) {
-            sender.sendMessage("Not enough arguments!");
+            sender.sendMessage(this.main.conf.getFormattedString("incorrectUsage"));
             return true;
         }
 
@@ -26,7 +26,7 @@ public class Config implements Subcommand {
             // Only for debugging purposes
             case "get": {
                 if (args.length != 3) {
-                    sender.sendMessage("Not right amount of arguments!");
+                    sender.sendMessage(this.main.conf.getFormattedString("incorrectUsage"));
                     return true;
                 }
 
