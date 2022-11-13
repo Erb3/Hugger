@@ -53,6 +53,10 @@ public class Hugger implements CommandExecutor {
                 sender.sendMessage(this.main.conf.getRawString(args[2]));
                 break;
             }
+
+            default: {
+                return helpCommand(sender, cmd, label, args);
+            }
         }
 
         return true;
