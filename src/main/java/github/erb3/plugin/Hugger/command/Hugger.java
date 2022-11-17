@@ -64,6 +64,7 @@ public class Hugger implements CommandExecutor {
         return true;
     }
 
+    @SuppressWarnings("SameReturnValue")
     public boolean helpCommand(CommandSender sender, Command cmd, String label, String[] args) {
 
         TextComponent hugPlayer = new TextComponent(ChatColor.translateAlternateColorCodes('&',"\n  &3>> &7/hug &d[player]"));
