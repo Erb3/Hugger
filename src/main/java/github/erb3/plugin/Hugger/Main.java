@@ -4,6 +4,7 @@ import github.erb3.plugin.Hugger.command.Hug;
 import github.erb3.plugin.Hugger.command.HugTabCompleter;
 import github.erb3.plugin.Hugger.command.Hugger;
 import github.erb3.plugin.Hugger.command.HuggerTabCompleter;
+import github.erb3.plugin.Hugger.effects.EffectManager;
 import org.bukkit.Bukkit;
 import org.bukkit.command.PluginCommand;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -12,7 +13,8 @@ import java.util.Objects;
 
 public class Main extends JavaPlugin {
 
-    public Configurator conf = new Configurator(this);
+    public final Configurator conf = new Configurator(this);
+    public final EffectManager em =  new EffectManager(this);
 
     @Override
     public void onEnable() {
@@ -35,7 +37,9 @@ public class Main extends JavaPlugin {
             return;
         }
 
-        hugCmd.setExecutor(new Hug(this.conf));
+        this.em.updateEffectList();
+
+        hugCmd.setExecutor(new Hug(this));
         hugCmd.setTabCompleter(new HugTabCompleter());
         huggerCmd.setExecutor(new Hugger(this));
         huggerCmd.setTabCompleter(new HuggerTabCompleter());

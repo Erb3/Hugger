@@ -1,6 +1,6 @@
 package github.erb3.plugin.Hugger.command;
 
-import github.erb3.plugin.Hugger.Configurator;
+import github.erb3.plugin.Hugger.Main;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -9,9 +9,9 @@ import org.bukkit.entity.Player;
 
 public class Hug implements CommandExecutor {
 
-    private final Configurator conf;
-    public Hug(Configurator conf) {
-        this.conf = conf;
+    private final Main main;
+    public Hug(Main main) {
+        this.main = main;
     }
 
     @Override
@@ -19,25 +19,20 @@ public class Hug implements CommandExecutor {
 
         // Check if there are arguments
         if (!(args.length > 0)) {
-            sender.sendMessage(this.conf.getFormattedString("translation.hugSyntaxError"));
+            sender.sendMessage(this.main.conf.getFormattedString("translation.hugSyntaxError"));
             return true;
         }
 
         // Check if player exists
         Player pTo = Bukkit.getPlayer(args[0]);
         if (pTo == null) {
-            sender.sendMessage(this.conf.getFormattedString("translation.playerNotFoundError"));
+            sender.sendMessage(this.main.conf.getFormattedString("translation.playerNotFoundError"));
             return true;
         }
 
-        // Add extra check in case of getting hugged from Console.
-        String pFrom;
-        if (sender instanceof Player) pFrom = ((Player) sender).getDisplayName();
-        else pFrom = "&d" + sender.getName();
+        // Run effects
+        this.main.em.runAllEffects(sender, pTo);
 
-        // Send chat messages
-        pTo.sendMessage(this.conf.getFormattedString("translation.youGotHugged", pFrom));
-        sender.sendMessage(this.conf.getFormattedString("translation.huggingPlayer", pTo.getDisplayName()));
         return true;
     }
 }

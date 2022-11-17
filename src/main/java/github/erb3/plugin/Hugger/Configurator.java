@@ -2,19 +2,19 @@ package github.erb3.plugin.Hugger;
 
 import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.plugin.Plugin;
 
 public class Configurator {
-    private final Plugin pl;
+    private final Main pl;
     private FileConfiguration config;
 
-    public Configurator(Plugin pl) {
+    public Configurator(Main pl) {
         this.pl = pl;
     }
 
     public void createConfig() {
         this.pl.saveDefaultConfig();
         this.config = pl.getConfig();
+        this.pl.em.updateEffectList();
     }
 
     public void reload() {
@@ -24,6 +24,10 @@ public class Configurator {
 
     public String getRawString(String key) {
         return this.config.getString(key);
+    }
+
+    public boolean exists(String key) {
+        return this.config.contains(key);
     }
 
     public String getFormattedString(String key, String... args) {
