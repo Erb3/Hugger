@@ -11,3 +11,5 @@ effects:
     enabled: "true"
   actionBar:
     enabled: "true"
+  title:
+    enabled: "true"

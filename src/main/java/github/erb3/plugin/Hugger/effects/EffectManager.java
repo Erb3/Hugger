@@ -16,6 +16,7 @@ public class EffectManager {
 
         allPossibleEffects.add(new ChatMessage(main));
         allPossibleEffects.add(new ActionBar(main));
+        allPossibleEffects.add(new Title(main));
     }
 
     public void updateEffectList() {
