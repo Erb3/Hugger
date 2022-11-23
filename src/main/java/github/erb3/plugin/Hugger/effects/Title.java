@@ -18,10 +18,12 @@ public class Title implements Effect{
 
         if (from instanceof Player) {
             Player fromPlayer = (Player) from;
-            fromPlayer.sendTitle(this.main.conf.getFormattedString("translation.huggingPlayer", to.getDisplayName()), "", 1, 1, 1);
+            fromPlayer.sendTitle(this.main.conf.getFormattedString("effects.title.huggingPlayer", to.getDisplayName()),
+                    "", 1, 1, 1);
         }
 
-        to.sendTitle(this.main.conf.getFormattedString("translation.youGotHugged", fromName), "", 5, 30, 5);
+        to.sendTitle(this.main.conf.getFormattedString("effects.title.gotHugged", fromName),
+                "", 5, 30, 5);
     }
 
     @Override

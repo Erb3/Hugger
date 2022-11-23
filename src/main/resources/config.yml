@@ -1,7 +1,5 @@
 enabled: "true"
 translation:
-  youGotHugged: "&3Hugger &8>> &7You got hugged by: %s"
-  huggingPlayer: "&3Hugger &8>> &7Hugging: %s"
   hugSyntaxError: "&3Hugger &8>> &cSyntax Error. Usage: /hug [player]"
   playerNotFoundError: "&3Hugger &8>> &7The player you specified is not currently online"
   configReloaded: "&3Hugger &8>> &7Configuration successfully reloaded!"
@@ -9,7 +7,13 @@ translation:
 effects:
   chatMessage:
     enabled: "true"
+    gotHugged: "&3Hugger &8>> &7You got hugged by: %s"
+    huggingPlayer: "&3Hugger &8>> &7Hugging: %s"
   actionBar:
     enabled: "true"
+    gotHugged: "&3Hugger &8>> &7You got hugged by: %s"
+    huggingPlayer: "&3Hugger &8>> &7Hugging: %s"
   title:
     enabled: "true"
+    gotHugged: "&7You got hugged by %s"
+    huggingPlayer: ""

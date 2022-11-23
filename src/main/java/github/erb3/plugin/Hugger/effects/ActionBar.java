@@ -20,10 +20,12 @@ public class ActionBar implements Effect {
 
         if (from instanceof Player) {
             Player fromPlayer = (Player) from;
-            fromPlayer.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(this.main.conf.getFormattedString("translation.huggingPlayer", to.getDisplayName())));
+            fromPlayer.spigot().sendMessage(ChatMessageType.ACTION_BAR,
+                    new TextComponent(this.main.conf.getFormattedString("effects.actionBar.huggingPlayer", to.getDisplayName())));
         }
 
-        to.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(this.main.conf.getFormattedString("translation.youGotHugged", fromName)));
+        to.spigot().sendMessage(ChatMessageType.ACTION_BAR,
+                new TextComponent(this.main.conf.getFormattedString("effects.actionBar.gotHugged", fromName)));
     }
 
     @Override

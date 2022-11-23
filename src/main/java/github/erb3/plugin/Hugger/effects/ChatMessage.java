@@ -15,8 +15,8 @@ public class ChatMessage implements Effect {
     public void runEffect(CommandSender from, Player to) {
         String fromName = Utils.generateCommandSenderName(from);
 
-        to.sendMessage(this.main.conf.getFormattedString("translation.youGotHugged", fromName));
-        from.sendMessage(this.main.conf.getFormattedString("translation.huggingPlayer", to.getDisplayName()));
+        to.sendMessage(this.main.conf.getFormattedString("effects.chatMessage.gotHugged", fromName));
+        from.sendMessage(this.main.conf.getFormattedString("effects.chatMessage.huggingPlayer", to.getDisplayName()));
     }
 
     @Override
