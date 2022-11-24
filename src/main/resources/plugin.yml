@@ -6,6 +6,8 @@ author: 'Erb3'
 prefix: Hugger
 api-version: 1.19
 website: 'https://github.com/Erb3/Hugger'
+softdepend:
+  - PlaceholderAPI
 commands:
   hug:
     description: Hugs a player
