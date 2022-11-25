@@ -44,8 +44,11 @@ public class Main extends JavaPlugin {
         huggerCmd.setExecutor(new Hugger(this));
         huggerCmd.setTabCompleter(new HuggerTabCompleter());
 
-        if(Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null) {
+        if(Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null
+        && this.conf.getRawString("usePlaceholderAPI").equalsIgnoreCase("true")) {
             new PlaceholderHook(this).register();
+        } else {
+            getLogger().info("Pro tip: Hugger works with PlaceholderAPI!");
         }
     }
 

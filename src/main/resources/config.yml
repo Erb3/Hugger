@@ -1,4 +1,5 @@
 enabled: "true"
+usePlaceholderAPI: "true"
 translation:
   hugSyntaxError: "&3Hugger &8>> &cSyntax Error. Usage: /hug [player]"
   playerNotFoundError: "&3Hugger &8>> &7The player you specified is not currently online"
