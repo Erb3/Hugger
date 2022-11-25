@@ -44,6 +44,9 @@ public class Main extends JavaPlugin {
         huggerCmd.setExecutor(new Hugger(this));
         huggerCmd.setTabCompleter(new HuggerTabCompleter());
 
+        if(Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null) {
+            new PlaceholderHook(this).register();
+        }
     }
 
     @Override
