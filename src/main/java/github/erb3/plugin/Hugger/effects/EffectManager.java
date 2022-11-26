@@ -5,6 +5,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class EffectManager {
     private final Main main;
@@ -21,14 +22,15 @@ public class EffectManager {
     }
 
     public void updateEffectList() {
-
         effectList.clear();
 
         for (Effect e : allPossibleEffects) {
             String name = e.getName();
 
             if (main.conf.exists("effects." + name + ".enabled")) {
-                effectList.add(e);
+                if (Objects.equals(main.conf.getRawString("effects." + name + ".enabled"), "true")) {
+                    effectList.add(e);
+                }
             }
         }
     }
