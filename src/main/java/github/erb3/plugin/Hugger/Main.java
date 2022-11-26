@@ -5,6 +5,8 @@ import github.erb3.plugin.Hugger.command.HugTabCompleter;
 import github.erb3.plugin.Hugger.command.Hugger;
 import github.erb3.plugin.Hugger.command.HuggerTabCompleter;
 import github.erb3.plugin.Hugger.effects.EffectManager;
+import github.erb3.plugin.Hugger.files.Configurator;
+import github.erb3.plugin.Hugger.files.StatManager;
 import org.bukkit.Bukkit;
 import org.bukkit.command.PluginCommand;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -15,12 +17,14 @@ public class Main extends JavaPlugin {
 
     public final Configurator conf = new Configurator(this);
     public final EffectManager em =  new EffectManager(this);
+    public final StatManager sm = new StatManager(this);
 
     @Override
     public void onEnable() {
         Bukkit.getLogger().info("Enabling Hugger!");
 
         this.conf.createConfig();
+        this.sm.createFile();
 
         if (Objects.equals(this.conf.getRawString("enabled"), "false")) {
             Bukkit.getLogger().warning("Hugger has been disabled in its config. You can re-enable it in plugins/hugger/config.yml");
@@ -55,5 +59,6 @@ public class Main extends JavaPlugin {
     @Override
     public void onDisable() {
         Bukkit.getLogger().info("Disabling Hugger!");
+        this.sm.save();
     }
 }

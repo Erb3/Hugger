@@ -19,6 +19,7 @@ public class HuggerTabCompleter implements TabCompleter {
         } else if (args.length == 1){
             arguments.add("config");
             arguments.add("help");
+            arguments.add("player");
         }
 
         List<String> output = new ArrayList<>();

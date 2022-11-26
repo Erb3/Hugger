@@ -1,5 +1,6 @@
-package github.erb3.plugin.Hugger;
+package github.erb3.plugin.Hugger.files;
 
+import github.erb3.plugin.Hugger.Main;
 import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.FileConfiguration;
 

@@ -4,9 +4,11 @@ import github.erb3.plugin.Hugger.Main;
 import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.chat.*;
 import net.md_5.bungee.api.chat.hover.content.Text;
+import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
 
 public class Hugger implements CommandExecutor {
     private final Main main;
@@ -24,6 +26,10 @@ public class Hugger implements CommandExecutor {
         switch (args[0]) {
             case "config": {
                 return configCommand(sender, cmd, label, args);
+            }
+
+            case "player": {
+                return playerCommand(sender, cmd, label, args);
             }
 
             default: {
@@ -80,9 +86,34 @@ public class Hugger implements CommandExecutor {
         configReload.setHoverEvent(tabCompletion);
         help.setHoverEvent(tabCompletion);
 
-        sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "\n        &8<< &3Hugger &7by &6Erb3 & Contributors &8>>"));
+        sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "\n        &8<< &3Hugger &7by &6Erb3/PC_Cat & Contributors &8>>"));
         sender.spigot().sendMessage(hugPlayer, configReload, help);
 
         return true;
+    }
+
+    public boolean playerCommand(CommandSender sender, Command cmd, String label, String[] args) {
+        if (args.length == 1) {
+            printStats(sender, sender);
+            return true;
+        }
+
+        Player wantedPlayer = Bukkit.getPlayer(args[1]);
+        if (wantedPlayer == null) {
+            sender.sendMessage(this.main.conf.getFormattedString("translation.playerNotFoundError"));
+            return true;
+        }
+
+        printStats(sender, wantedPlayer);
+        return true;
+    }
+
+    private void printStats(CommandSender self, CommandSender wanted) {
+        String sent = Integer.toString(this.main.sm.getPlayerSent(wanted.getName()));
+        String received = Integer.toString(this.main.sm.getPlayerReceived(wanted.getName()));
+
+        self.sendMessage(this.main.conf.getFormattedString("translation.playerStatsHeader", wanted.getName()));
+        self.sendMessage(this.main.conf.getFormattedString("translation.hugsSentStat", sent));
+        self.sendMessage(this.main.conf.getFormattedString("translation.hugsReceivedStat", received));
     }
 }

@@ -5,6 +5,9 @@ translation:
   playerNotFoundError: "&3Hugger &8>> &7The player you specified is not currently online"
   configReloaded: "&3Hugger &8>> &7Configuration successfully reloaded!"
   incorrectUsage: "&3Hugger &8>> &cIncorrect usage of command. Refer to `/hugger help` for syntax"
+  playerStatsHeader: "&3 Player stats for: &7%s"
+  hugsSentStat: "&3 Hugs sent: &7%s"
+  hugsReceivedStat: "&3 Hugs received: &7%s"
 effects:
   chatMessage:
     enabled: "true"
@@ -18,3 +21,5 @@ effects:
     enabled: "true"
     gotHugged: "&7You got hugged by %s"
     huggingPlayer: ""
+  statistics:
+    enabled: "true"
