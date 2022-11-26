@@ -11,4 +11,15 @@ public class Utils {
 
         return fromName;
     }
+
+    public static String toUUID(CommandSender s) {
+        String name;
+        if (s instanceof Player) {
+            name = ((Player) s).getUniqueId().toString();
+        } else {
+            name = s.getName();
+        }
+
+        return name;
+    }
 }

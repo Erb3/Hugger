@@ -1,6 +1,7 @@
 package github.erb3.plugin.Hugger.command;
 
 import github.erb3.plugin.Hugger.Main;
+import github.erb3.plugin.Hugger.Utils;
 import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.chat.*;
 import net.md_5.bungee.api.chat.hover.content.Text;
@@ -109,8 +110,10 @@ public class Hugger implements CommandExecutor {
     }
 
     private void printStats(CommandSender self, CommandSender wanted) {
-        String sent = Integer.toString(this.main.sm.getPlayerSent(wanted.getName()));
-        String received = Integer.toString(this.main.sm.getPlayerReceived(wanted.getName()));
+
+        String name = Utils.toUUID(self);
+        String sent = Integer.toString(this.main.sm.getPlayerSent(name));
+        String received = Integer.toString(this.main.sm.getPlayerReceived(name));
 
         self.sendMessage(this.main.conf.getFormattedString("translation.playerStatsHeader", wanted.getName()));
         self.sendMessage(this.main.conf.getFormattedString("translation.hugsSentStat", sent));
