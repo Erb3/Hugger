@@ -33,6 +33,12 @@ public class Hug implements CommandExecutor {
         // Run effects
         this.main.em.runAllEffects(sender, pTo);
 
+        // Update statistics
+
+        if (this.main.conf.getRawString("enableStatistics").equalsIgnoreCase("true")) {
+            this.main.sm.increaseStats(sender, pTo);
+        }
+
         return true;
     }
 }

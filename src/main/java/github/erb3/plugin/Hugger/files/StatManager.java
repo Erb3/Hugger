@@ -1,6 +1,8 @@
 package github.erb3.plugin.Hugger.files;
 
 import github.erb3.plugin.Hugger.Main;
+import github.erb3.plugin.Hugger.Utils;
+import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 
@@ -85,5 +87,15 @@ public class StatManager {
 
     public int getPlayerReceived(String playerName) {
         return fetch("player." + playerName + ".received");
+    }
+
+    public void increaseStats(CommandSender from, CommandSender to) {
+        String fromStr = Utils.toUUID(from);
+        String toStr = Utils.toUUID(to);
+
+        this.main.sm.increaseTotalHugs();
+        this.main.sm.increasePlayerSent(fromStr);
+        this.main.sm.increasePlayerReceived(toStr);
+        this.main.sm.save();
     }
 }
