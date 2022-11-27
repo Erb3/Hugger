@@ -7,6 +7,8 @@ import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import java.util.HashMap;
+
 public class ActionBar implements Effect {
     private final Main main;
 
@@ -15,17 +17,17 @@ public class ActionBar implements Effect {
     }
 
     @Override
-    public void runEffect(CommandSender from, Player to) {
+    public void runEffect(CommandSender from, Player to, HashMap<String, String> args) {
         String fromName = Utils.generateCommandSenderName(from);
 
         if (from instanceof Player) {
             Player fromPlayer = (Player) from;
             fromPlayer.spigot().sendMessage(ChatMessageType.ACTION_BAR,
-                    new TextComponent(this.main.conf.getFormattedString("effects.actionBar.huggingPlayer", to.getDisplayName())));
+                    new TextComponent(Utils.formatString(args.get("huggingPlayer"), to.getDisplayName())));
         }
 
         to.spigot().sendMessage(ChatMessageType.ACTION_BAR,
-                new TextComponent(this.main.conf.getFormattedString("effects.actionBar.gotHugged", fromName)));
+                new TextComponent(Utils.formatString(args.get("gotHugged"), fromName)));
     }
 
     @Override

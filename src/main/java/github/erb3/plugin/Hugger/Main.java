@@ -12,12 +12,14 @@ import org.bukkit.command.PluginCommand;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.Objects;
+import java.util.Random;
 
 public class Main extends JavaPlugin {
 
     public final Configurator conf = new Configurator(this);
     public final EffectManager em =  new EffectManager(this);
     public final StatManager sm = new StatManager(this);
+    public final Random random = new Random();
 
     @Override
     public void onEnable() {
@@ -40,8 +42,6 @@ public class Main extends JavaPlugin {
             this.getServer().getPluginManager().disablePlugin(this);
             return;
         }
-
-        this.em.updateEffectList();
 
         hugCmd.setExecutor(new Hug(this));
         hugCmd.setTabCompleter(new HugTabCompleter());
