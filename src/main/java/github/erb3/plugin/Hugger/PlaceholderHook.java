@@ -5,11 +5,6 @@ import org.bukkit.OfflinePlayer;
 import org.jetbrains.annotations.NotNull;
 
 public class PlaceholderHook extends PlaceholderExpansion {
-    private final Main main;
-
-    public PlaceholderHook(Main app) {
-        this.main = app;
-    }
 
     @Override
     public @NotNull String getAuthor() {
@@ -27,7 +22,7 @@ public class PlaceholderHook extends PlaceholderExpansion {
     }
 
     @Override
-    public @NotNull boolean persist() {
+    public boolean persist() {
         return true;
     }
 

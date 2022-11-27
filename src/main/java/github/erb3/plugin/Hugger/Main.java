@@ -50,7 +50,7 @@ public class Main extends JavaPlugin {
 
         if(Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null
         && this.conf.getRawString("usePlaceholderAPI").equalsIgnoreCase("true")) {
-            new PlaceholderHook(this).register();
+            new PlaceholderHook().register();
         } else {
             getLogger().info("Pro tip: Hugger works with PlaceholderAPI!");
         }

@@ -14,12 +14,4 @@ public interface Effect {
      * @since 1.0.0
      */
     void runEffect(CommandSender from, Player to, HashMap<String, String> args);
-
-    /**
-     * This function returns a string, that contains the effect name.
-     * It is used in the config file to enable/configure the effect.
-     * @return The name of the effect
-     * @since 1.0.0
-     */
-    String getName();
 }

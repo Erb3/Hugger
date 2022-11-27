@@ -10,7 +10,6 @@ import java.io.File;
 import java.io.IOException;
 import java.util.logging.Level;
 
-@SuppressWarnings("ResultOfMethodCallIgnored")
 public class StatManager {
     private final Main main;
     public File statFile;
@@ -24,7 +23,13 @@ public class StatManager {
         statFile = new File(this.main.getDataFolder(), "stats.yml");
 
         if (!statFile.exists()) {
-            statFile.getParentFile().mkdirs();
+            boolean couldCreateDirs = statFile.getParentFile().mkdirs();
+
+            if (!couldCreateDirs) {
+                this.main.getLogger().severe("Severe error!!  Could not create the needed directories for stats!");
+                return;
+            }
+
             this.main.saveResource("stats.yml", false);
         }
 

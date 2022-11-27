@@ -10,6 +10,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.jetbrains.annotations.NotNull;
 
 public class Hugger implements CommandExecutor {
     private final Main main;
@@ -19,30 +20,32 @@ public class Hugger implements CommandExecutor {
     }
 
     @Override
-    public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
+    public boolean onCommand(@NotNull CommandSender sender, @NotNull Command cmd, @NotNull String label, String[] args) {
         if (args.length == 0) {
-            return helpCommand(sender, cmd, label, args);
+            helpCommand(sender);
         }
 
         switch (args[0]) {
             case "config": {
-                return configCommand(sender, cmd, label, args);
+                configCommand(sender, args);
             }
 
             case "player": {
-                return playerCommand(sender, cmd, label, args);
+                playerCommand(sender, args);
             }
 
             default: {
-                return helpCommand(sender, cmd, label, args);
+                helpCommand(sender);
             }
         }
+
+        return true;
     }
 
-    public boolean configCommand(CommandSender sender, Command cmd, String label, String[] args) {
+    public void configCommand(CommandSender sender, String[] args) {
         if (args.length < 2) {
             sender.sendMessage(this.main.conf.getFormattedString("translation.incorrectUsage"));
-            return true;
+            return;
         }
 
         switch (args[1]) {
@@ -56,7 +59,7 @@ public class Hugger implements CommandExecutor {
             case "get": {
                 if (args.length != 3) {
                     sender.sendMessage(this.main.conf.getFormattedString("translation.incorrectUsage"));
-                    return true;
+                    return;
                 }
 
                 sender.sendMessage(this.main.conf.getRawString(args[2]));
@@ -64,16 +67,13 @@ public class Hugger implements CommandExecutor {
             }
 
             default: {
-                return helpCommand(sender, cmd, label, args);
+                helpCommand(sender);
             }
         }
 
-        return true;
     }
 
-    @SuppressWarnings("SameReturnValue")
-    public boolean helpCommand(CommandSender sender, Command cmd, String label, String[] args) {
-
+    public void helpCommand(CommandSender sender) {
         TextComponent hugPlayer = new TextComponent(ChatColor.translateAlternateColorCodes('&',"\n  &3>> &7/hug &d[player]"));
         TextComponent configReload = new TextComponent(ChatColor.translateAlternateColorCodes('&',"\n  &3>> &7/hugger config reload"));
         TextComponent help = new TextComponent(ChatColor.translateAlternateColorCodes('&',"\n  &3>> &7/hugger help\n "));
@@ -90,23 +90,21 @@ public class Hugger implements CommandExecutor {
         sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "\n        &8<< &3Hugger &7by &6Erb3/PC_Cat & Contributors &8>>"));
         sender.spigot().sendMessage(hugPlayer, configReload, help);
 
-        return true;
     }
 
-    public boolean playerCommand(CommandSender sender, Command cmd, String label, String[] args) {
+    public void playerCommand(CommandSender sender, String[] args) {
         if (args.length == 1) {
             printStats(sender, sender);
-            return true;
+            return;
         }
 
         Player wantedPlayer = Bukkit.getPlayer(args[1]);
         if (wantedPlayer == null) {
             sender.sendMessage(this.main.conf.getFormattedString("translation.playerNotFoundError"));
-            return true;
+            return;
         }
 
         printStats(sender, wantedPlayer);
-        return true;
     }
 
     private void printStats(CommandSender self, CommandSender wanted) {
