@@ -24,3 +24,5 @@ effects:
       huggingPlayer: "&7Hugging: %s"
   - broadcast:
       message: "&3Hugger &8>> %s &7got hugged by %s! "
+  - sound:
+      sound: "BLOCK_NOTE_BLOCK_IRON_XYLOPHONE"
