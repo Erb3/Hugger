@@ -123,6 +123,8 @@ public class StatManager {
 
         this.updateRecordReading();
         player.sendMessage(this.main.conf.getFormattedString("translation.newRecord", currentRecordHolder));
+        this.main.getServer().broadcastMessage(
+                this.main.conf.getFormattedString("translation.newRecordBroadcast", player.getName(), Integer.toString(amountOfHugs)));
     }
 
     public void increaseStats(CommandSender from, CommandSender to) {
