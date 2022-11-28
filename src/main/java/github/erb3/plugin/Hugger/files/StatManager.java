@@ -34,7 +34,10 @@ public class StatManager {
         }
 
         statConfig = YamlConfiguration.loadConfiguration(statFile);
-        this.updateRecordReading();
+
+        if (this.main.conf.getRawString("enableRecords").equalsIgnoreCase("true")) {
+            this.updateRecordReading();
+        }
     }
 
     private void increase(String field) {
@@ -109,6 +112,10 @@ public class StatManager {
     }
 
     public void updateRecord(CommandSender player) {
+        if (!this.main.conf.getRawString("enableRecords").equalsIgnoreCase("true")) {
+            return;
+        }
+
         int amountOfHugs = this.getPlayerReceived(Utils.toUUID(player));
         String currentRecordHolder = this.recordHolder;
 
