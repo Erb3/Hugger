@@ -20,3 +20,5 @@ effects:
   - title:
       gotHugged: "&7You got hugged by %s"
       huggingPlayer: "&7Hugging: %s"
+  - broadcast:
+      message: "&3Hugger &8>> %s &7got hugged by %s! "

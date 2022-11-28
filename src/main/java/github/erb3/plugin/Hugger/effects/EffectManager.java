@@ -18,6 +18,7 @@ public class EffectManager {
         effectDatabase.put("chatMessage",   new ChatMessage());
         effectDatabase.put("title",         new Title());
         effectDatabase.put("actionBar",     new ActionBar());
+        effectDatabase.put("broadcast",     new Broadcast(this.main));
     }
 
     public void updateEffectList() {

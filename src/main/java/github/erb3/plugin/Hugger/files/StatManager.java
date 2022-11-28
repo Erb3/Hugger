@@ -113,7 +113,6 @@ public class StatManager {
         String currentRecordHolder = this.recordHolder;
 
         if (amountOfHugs <= this.recordAmount) return;
-        this.updateRecordReading();
 
         this.statConfig.set("record.holder", Utils.toUUID(player));
         this.statConfig.set("record.amount", amountOfHugs);
@@ -122,6 +121,7 @@ public class StatManager {
             return;
         }
 
+        this.updateRecordReading();
         player.sendMessage(this.main.conf.getFormattedString("translation.newRecord", currentRecordHolder));
     }
 
