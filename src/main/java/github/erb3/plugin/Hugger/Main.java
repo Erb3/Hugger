@@ -7,6 +7,7 @@ import github.erb3.plugin.Hugger.command.HuggerTabCompleter;
 import github.erb3.plugin.Hugger.effects.EffectManager;
 import github.erb3.plugin.Hugger.files.Configurator;
 import github.erb3.plugin.Hugger.files.StatManager;
+import github.erb3.plugin.Hugger.hooks.Papi;
 import org.bukkit.Bukkit;
 import org.bukkit.command.PluginCommand;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -48,7 +49,7 @@ public class Main extends JavaPlugin {
 
         if(Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null
         && this.conf.getRawString("usePlaceholderAPI").equalsIgnoreCase("true")) {
-            new PlaceholderHook().register();
+            new Papi(this).register();
         } else {
             getLogger().info("Pro tip: Hugger works with PlaceholderAPI!");
         }
