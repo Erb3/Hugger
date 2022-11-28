@@ -8,12 +8,15 @@ import org.bukkit.configuration.file.YamlConfiguration;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Objects;
 import java.util.logging.Level;
 
 public class StatManager {
     private final Main main;
     public File statFile;
     public FileConfiguration statConfig;
+    private String recordHolder = "";
+    private int recordAmount = 0;
 
     public StatManager(Main main) {
         this.main = main;
@@ -23,19 +26,15 @@ public class StatManager {
         statFile = new File(this.main.getDataFolder(), "stats.yml");
 
         if (!statFile.exists()) {
-            boolean couldCreateDirs = statFile.getParentFile().mkdirs();
-
-            if (!couldCreateDirs) {
-                this.main.getLogger().severe("Severe error!!  Could not create the needed directories for stats!");
-                return;
-            }
+            this.main.getLogger().info("Statistics file not found! Creating a new one :)");
+            //noinspection ResultOfMethodCallIgnored
+            statFile.getParentFile().mkdirs();
 
             this.main.saveResource("stats.yml", false);
         }
 
-        statConfig = new YamlConfiguration();
-
-        YamlConfiguration.loadConfiguration(statFile);
+        statConfig = YamlConfiguration.loadConfiguration(statFile);
+        this.updateRecordReading();
     }
 
     private void increase(String field) {
@@ -75,8 +74,10 @@ public class StatManager {
     }
 
     public void save() {
+        this.main.getLogger().info("Saving statistics file.");
         try {
             this.statConfig.save(this.statFile);
+            this.main.getLogger().info("Statistics file saved.");
         } catch (IOException e) {
             this.main.getLogger().log(Level.SEVERE, "Could not save stats file!\n" + e);
         }
@@ -94,13 +95,45 @@ public class StatManager {
         return fetch("player." + playerName + ".received");
     }
 
+    public void updateRecordReading() {
+        String currentRecordAmountStr = this.statConfig.getString("record.amount");
+        String currentRecordHolder = this.statConfig.getString("record.holder");
+
+        if (currentRecordAmountStr == null || currentRecordHolder == null) {
+            this.main.getLogger().severe("Severe Error! Trying to update record, but field not found!!");
+            return;
+        }
+
+        this.recordHolder = currentRecordHolder;
+        this.recordAmount = Integer.parseInt(currentRecordAmountStr);
+    }
+
+    public void updateRecord(CommandSender player) {
+        int amountOfHugs = this.getPlayerReceived(Utils.toUUID(player));
+        String currentRecordHolder = this.recordHolder;
+
+        if (amountOfHugs <= this.recordAmount) return;
+        this.updateRecordReading();
+
+        this.statConfig.set("record.holder", Utils.toUUID(player));
+        this.statConfig.set("record.amount", amountOfHugs);
+
+        if (Objects.equals(currentRecordHolder, Utils.toUUID(player))) {
+            return;
+        }
+
+        player.sendMessage(this.main.conf.getFormattedString("translation.newRecord", currentRecordHolder));
+    }
+
     public void increaseStats(CommandSender from, CommandSender to) {
         String fromStr = Utils.toUUID(from);
         String toStr = Utils.toUUID(to);
 
-        this.main.sm.increaseTotalHugs();
-        this.main.sm.increasePlayerSent(fromStr);
-        this.main.sm.increasePlayerReceived(toStr);
-        this.main.sm.save();
+        this.increaseTotalHugs();
+        this.increasePlayerSent(fromStr);
+        this.increasePlayerReceived(toStr);
+        this.updateRecord(to);
+
+        this.save();
     }
 }

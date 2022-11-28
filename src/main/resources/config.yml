@@ -9,6 +9,7 @@ translation:
   playerStatsHeader: "&3 Player stats for: &7%s"
   hugsSentStat: "&3 Hugs sent: &7%s"
   hugsReceivedStat: "&3 Hugs received: &7%s"
+  newRecord: "&3Hugger &8>> &7Congratulations! You beat the record for most hugged person on the server! The old record-holder was: %s"
 effects:
   - chatMessage:
       gotHugged: "&3Hugger &8>> &7You got hugged by: %s"

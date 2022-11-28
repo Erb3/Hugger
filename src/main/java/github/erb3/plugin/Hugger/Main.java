@@ -23,8 +23,6 @@ public class Main extends JavaPlugin {
 
     @Override
     public void onEnable() {
-        Bukkit.getLogger().info("Enabling Hugger!");
-
         this.conf.createConfig();
         this.sm.createFile();
 
@@ -58,7 +56,6 @@ public class Main extends JavaPlugin {
 
     @Override
     public void onDisable() {
-        Bukkit.getLogger().info("Disabling Hugger!");
         this.sm.save();
     }
 }

@@ -1,2 +1,5 @@
-total: 0
+total: "0"
+record:
+  amount: "0"
+  holder: "no-one"
 player:
