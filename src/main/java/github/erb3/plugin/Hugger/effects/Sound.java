@@ -25,7 +25,6 @@ public class Sound implements Effect {
         } catch (IllegalArgumentException e) {
             this.main.getLogger().severe("Could not understand sound: " + args.get("sound"));
         }
-
     }
 
     private static void playSound(Player p, org.bukkit.Sound sound) {

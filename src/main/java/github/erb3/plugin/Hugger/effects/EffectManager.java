@@ -20,6 +20,7 @@ public class EffectManager {
         effectDatabase.put("actionBar",     new ActionBar());
         effectDatabase.put("broadcast",     new Broadcast(this.main));
         effectDatabase.put("sound",         new Sound(this.main));
+        effectDatabase.put("particle",      new Particle(this.main));
     }
 
     public void updateEffectList() {
