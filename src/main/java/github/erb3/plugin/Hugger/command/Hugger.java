@@ -23,19 +23,23 @@ public class Hugger implements CommandExecutor {
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command cmd, @NotNull String label, String[] args) {
         if (args.length == 0) {
             helpCommand(sender);
+            return true;
         }
 
         switch (args[0]) {
             case "config": {
                 configCommand(sender, args);
+                break;
             }
 
             case "player": {
                 playerCommand(sender, args);
+                break;
             }
 
             default: {
                 helpCommand(sender);
+                break;
             }
         }
 
