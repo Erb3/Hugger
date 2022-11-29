@@ -1,6 +1,7 @@
 package github.erb3.plugin.Hugger.command;
 
 import github.erb3.plugin.Hugger.Main;
+import github.erb3.plugin.Hugger.Utils;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -8,9 +9,12 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.Objects;
+
 public class Hug implements CommandExecutor {
 
     private final Main main;
+
     public Hug(Main main) {
         this.main = main;
     }
@@ -36,8 +40,16 @@ public class Hug implements CommandExecutor {
 
         // Update statistics
 
-        if (this.main.conf.getRawString("enableStatistics").equalsIgnoreCase("true")) {
-            this.main.sm.increaseStats(sender, pTo);
+        if (Objects.equals(Utils.toUUID(sender), Utils.toUUID(pTo))) {
+            if (this.main.conf.getRawString("selfhugCountsStatistics").equalsIgnoreCase("true")) {
+                if (this.main.conf.getRawString("enableStatistics").equalsIgnoreCase("true")) {
+                    this.main.sm.increaseStats(sender, pTo);
+                }
+            }
+        } else {
+            if (this.main.conf.getRawString("enableStatistics").equalsIgnoreCase("true")) {
+                this.main.sm.increaseStats(sender, pTo);
+            }
         }
 
         return true;
