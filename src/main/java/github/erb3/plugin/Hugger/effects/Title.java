@@ -14,11 +14,32 @@ public class Title implements Effect{
 
         if (from instanceof Player) {
             Player fromPlayer = (Player) from;
-            fromPlayer.sendTitle(Utils.formatString(args.get("huggingPlayer"), to.getDisplayName()),
-                    "", 1, 1, 1);
+            sendTitle(fromPlayer, Utils.formatString(args.get("huggingPlayer"), to.getDisplayName()));
         }
 
-        to.sendTitle(Utils.formatString(args.get("gotHugged"), fromName),
-                "", 5, 30, 5);
+        sendTitle(to, Utils.formatString(args.get("gotHugged"), fromName));
+    }
+
+    private static void sendTitle(Player p, String oneliner) {
+        String[] lines = oneliner.split(";");
+
+        if (lines.length == 2) {
+        p.sendTitle(
+                Utils.formatString(lines[0]),
+                Utils.formatString(lines[1]),
+                5,
+                20,
+                5
+        );
+        } else {
+            p.sendTitle(
+                    Utils.formatString(lines[0]),
+                    "",
+                    5,
+                    20,
+                    5
+            );
+        }
+
     }
 }
