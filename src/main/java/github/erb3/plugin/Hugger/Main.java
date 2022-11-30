@@ -8,6 +8,7 @@ import github.erb3.plugin.Hugger.effects.EffectManager;
 import github.erb3.plugin.Hugger.files.Configurator;
 import github.erb3.plugin.Hugger.files.StatManager;
 import github.erb3.plugin.Hugger.hooks.Papi;
+import org.bstats.bukkit.Metrics;
 import org.bukkit.Bukkit;
 import org.bukkit.command.PluginCommand;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -53,6 +54,9 @@ public class Main extends JavaPlugin {
         } else {
             getLogger().info("Pro tip: Hugger works with PlaceholderAPI!");
         }
+
+        Metrics metrics = new Metrics(this, 16976);
+        getLogger().info("Metrics should be enabled now.");
     }
 
     @Override
