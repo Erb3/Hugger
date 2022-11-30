@@ -145,4 +145,12 @@ public class StatManager {
 
         this.save();
     }
+
+    public String getRecordHolder() {
+        return this.recordHolder;
+    }
+
+    public int getRecord() {
+        return this.recordAmount;
+    }
 }

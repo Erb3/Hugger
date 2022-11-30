@@ -13,6 +13,8 @@ translation:
   hugsReceivedStat: "&3 Hugs received: &7%s"
   newRecord: "&3Hugger &8>> &7Congratulations! You beat the record for most hugged person on the server! The old record-holder was: %s"
   newRecordBroadcast: "&3Hugger &8>> &7%s just beat the record for most hugged player! They now have %s hugs."
+  recordInfoTitle: "&3Hugger &8>> &7Record information:"
+  recordInfo: "&3Current holder: &7%s\n&3Current record: &7%s"
 effects:
   - chatMessage:
       gotHugged: "&3Hugger &8>> &7You got hugged by: %s"

@@ -37,6 +37,11 @@ public class Hugger implements CommandExecutor {
                 break;
             }
 
+            case "record": {
+                recordCommand(sender);
+                break;
+            }
+
             default: {
                 helpCommand(sender);
                 break;
@@ -120,5 +125,20 @@ public class Hugger implements CommandExecutor {
         self.sendMessage(this.main.conf.getFormattedString("translation.playerStatsHeader", wanted.getName()));
         self.sendMessage(this.main.conf.getFormattedString("translation.hugsSentStat", sent));
         self.sendMessage(this.main.conf.getFormattedString("translation.hugsReceivedStat", received));
+    }
+
+    public void recordCommand(CommandSender sender) {
+        Player recordHolder = Bukkit.getPlayer(this.main.sm.getRecordHolder());
+        String recordHolderName;
+
+        if (recordHolder == null) {
+            recordHolderName = this.main.sm.getRecordHolder();
+        } else {
+            recordHolderName = recordHolder.getDisplayName();
+        }
+
+        sender.sendMessage(this.main.conf.getFormattedString("translation.recordInfoTitle"));
+        sender.sendMessage(this.main.conf.getFormattedString("translation.recordInfo", recordHolderName,
+                Integer.toString(this.main.sm.getRecord())));
     }
 }

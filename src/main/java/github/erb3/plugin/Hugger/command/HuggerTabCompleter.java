@@ -21,6 +21,7 @@ public class HuggerTabCompleter implements TabCompleter {
             arguments.add("config");
             arguments.add("help");
             arguments.add("player");
+            arguments.add("record");
         }
 
         List<String> output = new ArrayList<>();

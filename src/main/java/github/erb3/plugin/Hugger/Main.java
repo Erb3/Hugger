@@ -56,7 +56,7 @@ public class Main extends JavaPlugin {
         }
 
         Metrics metrics = new Metrics(this, 16976);
-        getLogger().info("Metrics should be enabled now.");
+        getLogger().info("bStats should be enabled now. This can be disabled in the bStats config");
     }
 
     @Override
