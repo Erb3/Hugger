@@ -3,6 +3,7 @@ usePlaceholderAPI: "true"
 enableStatistics: "true"
 enableRecords: "true"
 selfhugCountsStatistics: "true"
+cooldown: "10"
 translation:
   hugSyntaxError: "&3Hugger &8>> &cSyntax Error. Usage: /hug [player]"
   playerNotFoundError: "&3Hugger &8>> &7The player you specified is not currently online"
@@ -16,6 +17,7 @@ translation:
   recordInfoTitle: "&3Hugger &8>> &7Record information:"
   recordInfo: "&3Current holder: &7%s\n&3Current record: &7%s"
   permissionDenied: "&3Hugger &8>> &cPermission Denied! &7(%s)"
+  cooldownReached: "&3Hugger &8>> &cCooldown reached! &7(%ss / %ss)"
 effects:
   - chatMessage:
       gotHugged: "&3Hugger &8>> &7You got hugged by: %s"

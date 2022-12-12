@@ -9,11 +9,13 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.HashMap;
 import java.util.Objects;
 
 public class Hug implements CommandExecutor {
 
     private final Main main;
+    private final HashMap<String, Long> cooldowns = new HashMap<>();
 
     public Hug(Main main) {
         this.main = main;
@@ -46,6 +48,20 @@ public class Hug implements CommandExecutor {
                 return true;
             }
         }
+
+        if (!cooldowns.containsKey(Utils.toUUID(sender))) {
+            cooldowns.put(Utils.toUUID(sender), System.currentTimeMillis());
+        } else {
+            long diff = System.currentTimeMillis() - cooldowns.get(Utils.toUUID(sender));
+
+            if (diff <= Integer.parseInt(this.main.conf.getRawString("cooldown")) * 1000L) {
+                sender.sendMessage(this.main.conf.getFormattedString("translation.cooldownReached",
+                        Integer.toString(Math.round(diff / 1000F)), this.main.conf.getRawString("cooldown")));
+                return true;
+            }
+
+            cooldowns.put(Utils.toUUID(sender), System.currentTimeMillis());
+         }
 
         // Run effects
         this.main.em.runAllEffects(sender, pTo);
