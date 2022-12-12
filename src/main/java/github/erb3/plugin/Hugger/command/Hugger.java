@@ -52,6 +52,11 @@ public class Hugger implements CommandExecutor {
     }
 
     public void configCommand(CommandSender sender, String[] args) {
+        if (!sender.hasPermission("hugger.config")) {
+            sender.sendMessage(this.main.conf.getFormattedString("translation.permissionDenied", "hugger.config"));
+            return;
+        }
+
         if (args.length < 2) {
             sender.sendMessage(this.main.conf.getFormattedString("translation.incorrectUsage"));
             return;
@@ -83,9 +88,9 @@ public class Hugger implements CommandExecutor {
     }
 
     public void helpCommand(CommandSender sender) {
-        TextComponent hugPlayer = new TextComponent(ChatColor.translateAlternateColorCodes('&',"\n  &3>> &7/hug &d[player]"));
-        TextComponent configReload = new TextComponent(ChatColor.translateAlternateColorCodes('&',"\n  &3>> &7/hugger config reload"));
-        TextComponent help = new TextComponent(ChatColor.translateAlternateColorCodes('&',"\n  &3>> &7/hugger help\n "));
+        TextComponent hugPlayer = new TextComponent(ChatColor.translateAlternateColorCodes('&', "\n  &3>> &7/hug &d[player]"));
+        TextComponent configReload = new TextComponent(ChatColor.translateAlternateColorCodes('&', "\n  &3>> &7/hugger config reload"));
+        TextComponent help = new TextComponent(ChatColor.translateAlternateColorCodes('&', "\n  &3>> &7/hugger help\n "));
 
         hugPlayer.setClickEvent(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, "/hug "));
         configReload.setClickEvent(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, "/hugger config reload"));
@@ -103,6 +108,10 @@ public class Hugger implements CommandExecutor {
 
     public void playerCommand(CommandSender sender, String[] args) {
         if (args.length == 1) {
+            if (!sender.hasPermission("hugger.player")) {
+                sender.sendMessage(this.main.conf.getFormattedString("translation.permissionDenied", "hugger.player"));
+                return;
+            }
             printStats(sender, sender);
             return;
         }
@@ -113,12 +122,17 @@ public class Hugger implements CommandExecutor {
             return;
         }
 
+        if (!sender.hasPermission("hugger.player.others") && !Utils.toUUID(wantedPlayer).equals(Utils.toUUID(sender))) {
+            sender.sendMessage(this.main.conf.getFormattedString("translation.permissionDenied", "hugger.player.others"));
+            return;
+        }
+
         printStats(sender, wantedPlayer);
     }
 
     private void printStats(CommandSender self, CommandSender wanted) {
 
-        String name = Utils.toUUID(self);
+        String name = Utils.toUUID(wanted);
         String sent = Integer.toString(this.main.sm.getPlayerSent(name));
         String received = Integer.toString(this.main.sm.getPlayerReceived(name));
 
@@ -128,6 +142,12 @@ public class Hugger implements CommandExecutor {
     }
 
     public void recordCommand(CommandSender sender) {
+
+        if (!sender.hasPermission("hugger.record")) {
+            sender.sendMessage(this.main.conf.getFormattedString("translation.permissionDenied", "hugger.record"));
+            return;
+        }
+
         Player recordHolder = Bukkit.getPlayer(this.main.sm.getRecordHolder());
         String recordHolderName;
 

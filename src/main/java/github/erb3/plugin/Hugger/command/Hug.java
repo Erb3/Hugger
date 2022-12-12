@@ -28,11 +28,23 @@ public class Hug implements CommandExecutor {
             return true;
         }
 
+        if (!sender.hasPermission("hugger.hug")) {
+            sender.sendMessage(this.main.conf.getFormattedString("translation.permissionDenied", "hugger.hug"));
+            return true;
+        }
+
         // Check if player exists
         Player pTo = Bukkit.getPlayer(args[0]);
         if (pTo == null) {
             sender.sendMessage(this.main.conf.getFormattedString("translation.playerNotFoundError"));
             return true;
+        }
+
+        if (Objects.equals(Utils.toUUID(sender), Utils.toUUID(pTo))) {
+            if (!sender.hasPermission("hugger.hug.self")) {
+                sender.sendMessage(this.main.conf.getFormattedString("translation.permissionDenied", "hugger.hug.self"));
+                return true;
+            }
         }
 
         // Run effects

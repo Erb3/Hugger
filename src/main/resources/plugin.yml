@@ -14,3 +14,26 @@ commands:
   hugger:
     description: A command to learn about hugger, and edit config.
     usage: /hugger [sub-command] [arguments]
+permissions:
+  hugger.hug:
+    description: The command to hug people
+    default: true
+  hugger.hug.self:
+    description: Lets you hug yourself
+    default: op
+    children:
+      hugger.hug: true
+  hugger.player:
+    description: Gets statistics about a player
+    default: true
+  hugger.player.others:
+    description: Gets statistics about other players too!
+    default: op
+    children:
+      hugger.player: true
+  hugger.record:
+    description: Shows the current record
+    default: true
+  hugger.config:
+    description: Manage the config. Do not grant this to players!
+    default: op
