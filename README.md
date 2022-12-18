@@ -26,10 +26,12 @@ Hugger is a simple way to add hugs to your minecraft server. It has an extensive
 ## Requirements
 
 To use Hugger you **need** the following:
+
 * Spigot / Bukkit based server
 * Admin access
 
 For some optional extra features you need:
+
 * PlaceholderAPI (For PlaceholderAPI support)
 * Permission manager (For giving people access to commands)
 
