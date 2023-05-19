@@ -1,0 +1,10 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Development Server" type="JarApplication">
+    <option name="JAR_PATH" value="$PROJECT_DIR$/run/paper.jar" />
+    <option name="VM_PARAMETERS" value="-DIReallyKnowWhatIAmDoingISwear -Xmx2048M -Xms2048M" />
+    <option name="PROGRAM_PARAMETERS" value="nogui" />
+    <option name="WORKING_DIRECTORY" value="E:\Documents\Koding\Java\Hugger\run" />
+    <option name="ALTERNATIVE_JRE_PATH" />
+    <method v="2" />
+  </configuration>
+</component>
