@@ -1,7 +1,7 @@
 
 # Hugger
 
-Corona is finally relatively over, so let's start hugging again!
+Corona is finally "over", so let's start hugging again!
 Hugger is a simple way to add hugs to your minecraft server. It has an extensive wiki, simple commands, poop code and lots of hugs!
 
 ## Features
@@ -37,7 +37,7 @@ For some optional extra features you need:
 
 ## Wiki
 
-Much more information is on the wiki!
+Much more information is on the wiki! [See here!](https://erb3.github.io/hugger)
 
 ## Screenshots
 
