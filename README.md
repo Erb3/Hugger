@@ -1,9 +1,12 @@
 # Hugger
 
-Hugger is a simple way to add hugs to your Spigot-based Minecraft server. It is highly configurable!
-
 [![github](https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy/available/github_vector.svg)](https://github.com/Erb3/Hugger)
 [![modrinth](https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy/available/modrinth_vector.svg)](https://modrinth.com/mod/hugger)
+
+<!--suppress HtmlDeprecatedAttribute -->
+<img alt="Picture of a heart" align="right" width="100" height="100" src="https://raw.githubusercontent.com/Erb3/Hugger/main/assets/icon-rounded.png" title="Hugger Icon">
+
+Hugger is a simple way to add hugs to your Spigot-based Minecraft server. It is highly configurable!
 
 ## Features
 
