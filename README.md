@@ -1,8 +1,9 @@
-
 # Hugger
 
-Corona is finally "over", so let's start hugging again!
-Hugger is a simple way to add hugs to your minecraft server. It has an extensive wiki, simple commands, poop code and lots of hugs!
+Hugger is a simple way to add hugs to your Spigot-based Minecraft server. It is highly configurable!
+
+[![github](https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy/available/github_vector.svg)](https://github.com/Erb3/Hugger)
+[![modrinth](https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy/available/modrinth_vector.svg)](https://modrinth.com/mod/hugger)
 
 ## Features
 
@@ -16,28 +17,28 @@ Hugger is a simple way to add hugs to your minecraft server. It has an extensive
   * Particle
 * Cooldown
 * Useful help command, with clickable commands
-* Config reloader
+* Config re-loader
 * Record system (Player with most received hugs)
-* Statistics system (Amount of hugs sent / received)
+* Statistics system (Number of hugs sent / received)
 * Permissions
-* Opensource on GitHub
+* Open-Source on GitHub
 * PlaceholderAPI support
 
 ## Requirements
 
 To use Hugger you **need** the following:
 
-* Spigot / Bukkit based server
+* Spigot-based Minecraft server
 * Admin access
 
-For some optional extra features you need:
+For some optional features you also need:
 
 * PlaceholderAPI (For PlaceholderAPI support)
 * Permission manager (For giving people access to commands)
 
 ## Wiki
 
-Much more information is on the wiki! [See here!](https://erb3.github.io/hugger)
+Much more information is on the wiki! [See here!](https://erb3.github.io/Hugger)
 
 ## Screenshots
 
@@ -45,7 +46,7 @@ Much more information is on the wiki! [See here!](https://erb3.github.io/hugger)
 
 ## Placeholders
 
-If you use PlaceholderAPI you can use the following placeholders:
+If you use PlaceholderAPI, you can use the following placeholders:
 
 * `%hugger_total%`
 * `%hugger_sent%`
