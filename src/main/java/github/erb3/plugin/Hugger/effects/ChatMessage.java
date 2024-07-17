@@ -10,9 +10,7 @@ public class ChatMessage implements Effect {
 
     @Override
     public void runEffect(CommandSender from, Player to, HashMap<String, String> args) {
-        String fromName = Utils.generateCommandSenderName(from);
-
-        to.sendMessage(Utils.formatString(args.get("gotHugged"), fromName));
+        to.sendMessage(Utils.formatString(args.get("gotHugged"), Utils.generateCommandSenderName(from)));
         from.sendMessage(Utils.formatString(args.get("huggingPlayer"), to.getDisplayName()));
     }
 }

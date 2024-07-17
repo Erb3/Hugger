@@ -15,13 +15,13 @@ public class Sound implements Effect {
     @Override
     public void runEffect(CommandSender from, Player to, HashMap<String, String> args) {
         try {
-            org.bukkit.Sound s = org.bukkit.Sound.valueOf(args.get("sound"));
+            org.bukkit.Sound sound = org.bukkit.Sound.valueOf(args.get("sound"));
 
             if (from instanceof Player) {
-                playSound((Player) from, s);
+                playSound((Player) from, sound);
             }
 
-            playSound(to, s);
+            playSound(to, sound);
         } catch (IllegalArgumentException e) {
             this.main.getLogger().severe("Could not understand sound: " + args.get("sound"));
         }

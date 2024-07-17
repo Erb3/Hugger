@@ -7,30 +7,26 @@ import org.bukkit.configuration.file.FileConfiguration;
 import java.util.*;
 
 public class Configurator {
-    private final Main pl;
+    private final Main plugin;
     private FileConfiguration config;
 
-    public Configurator(Main pl) {
-        this.pl = pl;
+    public Configurator(Main plugin) {
+        this.plugin = plugin;
     }
 
     public void createConfig() {
-        this.pl.saveDefaultConfig();
-        this.config = pl.getConfig();
-        this.pl.em.updateEffectList();
+        this.plugin.saveDefaultConfig();
+        this.config = plugin.getConfig();
+        this.plugin.effectManager.updateEffectList();
     }
 
     public void reload() {
-        this.pl.reloadConfig();
-        this.config = this.pl.getConfig();
+        this.plugin.reloadConfig();
+        this.config = this.plugin.getConfig();
     }
 
     public String getRawString(String key) {
         return this.config.getString(key);
-    }
-
-    public boolean exists(String key) {
-        return this.config.contains(key);
     }
 
     public String getFormattedString(String key, String... args) {
@@ -47,13 +43,13 @@ public class Configurator {
 
         assert o != null;
         if (o.getClass().isArray()) {
-            this.pl.getLogger().severe("Severe error loading config! The object `" + key + "` is a array, not a collection!");
+            this.plugin.getLogger().severe("Severe error loading config! The object `" + key + "` is a array, not a collection!");
             list = new ArrayList<>();
         } else if (o instanceof Collection) {
             //noinspection unchecked
             list = new ArrayList<>((Collection<HashMap<String, HashMap<String, String>>>) o);
         } else {
-            this.pl.getLogger().severe("Severe error loading config! The object `" + key + "` is not a array, nor a collection!");
+            this.plugin.getLogger().severe("Severe error loading config! The object `" + key + "` is not a array, nor a collection!");
             list = new ArrayList<>();
         }
 

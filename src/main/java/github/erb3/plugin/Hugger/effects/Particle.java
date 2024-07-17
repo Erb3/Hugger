@@ -12,7 +12,6 @@ public class Particle implements Effect{
         this.main = main;
     }
 
-
     @Override
     public void runEffect(CommandSender from, Player to, HashMap<String, String> args) {
         try {

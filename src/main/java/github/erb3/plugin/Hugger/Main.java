@@ -18,17 +18,17 @@ import java.util.Random;
 
 public class Main extends JavaPlugin {
 
-    public final Configurator conf = new Configurator(this);
-    public final EffectManager em =  new EffectManager(this);
-    public final StatManager sm = new StatManager(this);
+    public final Configurator config = new Configurator(this);
+    public final EffectManager effectManager =  new EffectManager(this);
+    public final StatManager statManager = new StatManager(this);
     public final Random random = new Random();
 
     @Override
     public void onEnable() {
-        this.conf.createConfig();
-        this.sm.createFile();
+        this.config.createConfig();
+        this.statManager.createFile();
 
-        if (Objects.equals(this.conf.getRawString("enabled"), "false")) {
+        if (Objects.equals(this.config.getRawString("enabled"), "false")) {
             Bukkit.getLogger().warning("Hugger has been disabled in its config. You can re-enable it in plugins/hugger/config.yml");
             this.getServer().getPluginManager().disablePlugin(this);
             return;
@@ -48,19 +48,16 @@ public class Main extends JavaPlugin {
         huggerCmd.setExecutor(new Hugger(this));
         huggerCmd.setTabCompleter(new HuggerTabCompleter());
 
-        if(Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null
-        && this.conf.getRawString("usePlaceholderAPI").equalsIgnoreCase("true")) {
+        if(Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null) {
             new Papi(this).register();
-        } else {
-            getLogger().info("Pro tip: Hugger works with PlaceholderAPI!");
         }
 
-        Metrics metrics = new Metrics(this, 16976);
-        getLogger().info("bStats should be enabled now. This can be disabled in the bStats config");
+        new Metrics(this, 16976);
+        getLogger().info("bStats enabled for Hugger. This can be disabled in the bStats config");
     }
 
     @Override
     public void onDisable() {
-        this.sm.save();
+        this.statManager.save();
     }
 }

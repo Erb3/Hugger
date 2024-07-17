@@ -121,12 +121,6 @@ The main toggle switch to Hugger. Disabling this will disable hugger, once confi
 
 Values: `"true"` / `"false"`
 
-#### `usePlaceholderAPI`
-
-If Placeholder API should be used.
-
-Values: `"true"` / `"false"`
-
 #### `enableStatistics`
 
 Toggles if statistics should be recorded.

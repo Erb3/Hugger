@@ -24,7 +24,7 @@ public class EffectManager {
     }
 
     public void updateEffectList() {
-        ArrayList<HashMap<String, HashMap<String, String>>> effectsInConfig = this.main.conf.getArray("effects");
+        ArrayList<HashMap<String, HashMap<String, String>>> effectsInConfig = this.main.config.getArray("effects");
         for (HashMap<String, HashMap<String, String>> e : effectsInConfig) {
             ArrayList<String> effectTypes = new ArrayList<>(e.keySet());
             HashMap<String, String> args = e.get(effectTypes.get(0));

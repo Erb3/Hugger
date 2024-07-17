@@ -26,25 +26,25 @@ public class Hug implements CommandExecutor {
 
         // Check if there are arguments
         if (!(args.length > 0)) {
-            sender.sendMessage(this.main.conf.getFormattedString("translation.hugSyntaxError"));
+            sender.sendMessage(this.main.config.getFormattedString("translation.hugSyntaxError"));
             return true;
         }
 
         if (!sender.hasPermission("hugger.hug")) {
-            sender.sendMessage(this.main.conf.getFormattedString("translation.permissionDenied", "hugger.hug"));
+            sender.sendMessage(this.main.config.getFormattedString("translation.permissionDenied", "hugger.hug"));
             return true;
         }
 
         // Check if player exists
         Player pTo = Bukkit.getPlayer(args[0]);
         if (pTo == null) {
-            sender.sendMessage(this.main.conf.getFormattedString("translation.playerNotFoundError"));
+            sender.sendMessage(this.main.config.getFormattedString("translation.playerNotFoundError"));
             return true;
         }
 
         if (Objects.equals(Utils.toUUID(sender), Utils.toUUID(pTo))) {
             if (!sender.hasPermission("hugger.hug.self")) {
-                sender.sendMessage(this.main.conf.getFormattedString("translation.permissionDenied", "hugger.hug.self"));
+                sender.sendMessage(this.main.config.getFormattedString("translation.permissionDenied", "hugger.hug.self"));
                 return true;
             }
         }
@@ -54,9 +54,9 @@ public class Hug implements CommandExecutor {
         } else {
             long diff = System.currentTimeMillis() - cooldowns.get(Utils.toUUID(sender));
 
-            if (diff <= Integer.parseInt(this.main.conf.getRawString("cooldown")) * 1000L) {
-                sender.sendMessage(this.main.conf.getFormattedString("translation.cooldownReached",
-                        Integer.toString(Math.round(diff / 1000F)), this.main.conf.getRawString("cooldown")));
+            if (diff <= Integer.parseInt(this.main.config.getRawString("cooldown")) * 1000L) {
+                sender.sendMessage(this.main.config.getFormattedString("translation.cooldownReached",
+                        Integer.toString(Math.round(diff / 1000F)), this.main.config.getRawString("cooldown")));
                 return true;
             }
 
@@ -64,19 +64,19 @@ public class Hug implements CommandExecutor {
          }
 
         // Run effects
-        this.main.em.runAllEffects(sender, pTo);
+        this.main.effectManager.runAllEffects(sender, pTo);
 
         // Update statistics
 
         if (Objects.equals(Utils.toUUID(sender), Utils.toUUID(pTo))) {
-            if (this.main.conf.getRawString("selfhugCountsStatistics").equalsIgnoreCase("true")) {
-                if (this.main.conf.getRawString("enableStatistics").equalsIgnoreCase("true")) {
-                    this.main.sm.increaseStats(sender, pTo);
+            if (this.main.config.getRawString("selfhugCountsStatistics").equalsIgnoreCase("true")) {
+                if (this.main.config.getRawString("enableStatistics").equalsIgnoreCase("true")) {
+                    this.main.statManager.increaseStats(sender, pTo);
                 }
             }
         } else {
-            if (this.main.conf.getRawString("enableStatistics").equalsIgnoreCase("true")) {
-                this.main.sm.increaseStats(sender, pTo);
+            if (this.main.config.getRawString("enableStatistics").equalsIgnoreCase("true")) {
+                this.main.statManager.increaseStats(sender, pTo);
             }
         }
 

@@ -36,22 +36,12 @@ public class Papi extends PlaceholderExpansion {
     public String onRequest(OfflinePlayer player, String params) {
         String key = params.toLowerCase();
 
-        switch (key) {
-            case "total": {
-                return Integer.toString(this.main.sm.getTotalHugs());
-            }
-
-            case "sent": {
-                return Integer.toString(this.main.sm.getPlayerSent(Utils.toUUID(player.getPlayer())));
-            }
-
-            case "received": {
-                return Integer.toString(this.main.sm.getPlayerReceived(Utils.toUUID(player.getPlayer())));
-            }
-
-            default: {
-                return null;
-            }
-        }
+        return switch (key) {
+            case "total" -> Integer.toString(this.main.statManager.getTotalHugs());
+            case "sent" -> Integer.toString(this.main.statManager.getPlayerSent(Utils.toUUID(player.getPlayer())));
+            case "received" ->
+                    Integer.toString(this.main.statManager.getPlayerReceived(Utils.toUUID(player.getPlayer())));
+            default -> null;
+        };
     }
 }

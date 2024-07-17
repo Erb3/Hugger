@@ -53,30 +53,30 @@ public class Hugger implements CommandExecutor {
 
     public void configCommand(CommandSender sender, String[] args) {
         if (!sender.hasPermission("hugger.config")) {
-            sender.sendMessage(this.main.conf.getFormattedString("translation.permissionDenied", "hugger.config"));
+            sender.sendMessage(this.main.config.getFormattedString("translation.permissionDenied", "hugger.config"));
             return;
         }
 
         if (args.length < 2) {
-            sender.sendMessage(this.main.conf.getFormattedString("translation.incorrectUsage"));
+            sender.sendMessage(this.main.config.getFormattedString("translation.incorrectUsage"));
             return;
         }
 
         switch (args[1]) {
             case "reload": {
-                this.main.conf.reload();
-                sender.sendMessage(this.main.conf.getFormattedString("translation.configReloaded"));
+                this.main.config.reload();
+                sender.sendMessage(this.main.config.getFormattedString("translation.configReloaded"));
                 break;
             }
 
             // Only for debugging purposes
             case "get": {
                 if (args.length != 3) {
-                    sender.sendMessage(this.main.conf.getFormattedString("translation.incorrectUsage"));
+                    sender.sendMessage(this.main.config.getFormattedString("translation.incorrectUsage"));
                     return;
                 }
 
-                sender.sendMessage(this.main.conf.getRawString(args[2]));
+                sender.sendMessage(this.main.config.getRawString(args[2]));
                 break;
             }
 
@@ -109,7 +109,7 @@ public class Hugger implements CommandExecutor {
     public void playerCommand(CommandSender sender, String[] args) {
         if (args.length == 1) {
             if (!sender.hasPermission("hugger.player")) {
-                sender.sendMessage(this.main.conf.getFormattedString("translation.permissionDenied", "hugger.player"));
+                sender.sendMessage(this.main.config.getFormattedString("translation.permissionDenied", "hugger.player"));
                 return;
             }
             printStats(sender, sender);
@@ -118,12 +118,12 @@ public class Hugger implements CommandExecutor {
 
         Player wantedPlayer = Bukkit.getPlayer(args[1]);
         if (wantedPlayer == null) {
-            sender.sendMessage(this.main.conf.getFormattedString("translation.playerNotFoundError"));
+            sender.sendMessage(this.main.config.getFormattedString("translation.playerNotFoundError"));
             return;
         }
 
         if (!sender.hasPermission("hugger.player.others") && !Utils.toUUID(wantedPlayer).equals(Utils.toUUID(sender))) {
-            sender.sendMessage(this.main.conf.getFormattedString("translation.permissionDenied", "hugger.player.others"));
+            sender.sendMessage(this.main.config.getFormattedString("translation.permissionDenied", "hugger.player.others"));
             return;
         }
 
@@ -133,32 +133,32 @@ public class Hugger implements CommandExecutor {
     private void printStats(CommandSender self, CommandSender wanted) {
 
         String name = Utils.toUUID(wanted);
-        String sent = Integer.toString(this.main.sm.getPlayerSent(name));
-        String received = Integer.toString(this.main.sm.getPlayerReceived(name));
+        String sent = Integer.toString(this.main.statManager.getPlayerSent(name));
+        String received = Integer.toString(this.main.statManager.getPlayerReceived(name));
 
-        self.sendMessage(this.main.conf.getFormattedString("translation.playerStatsHeader", wanted.getName()));
-        self.sendMessage(this.main.conf.getFormattedString("translation.hugsSentStat", sent));
-        self.sendMessage(this.main.conf.getFormattedString("translation.hugsReceivedStat", received));
+        self.sendMessage(this.main.config.getFormattedString("translation.playerStatsHeader", wanted.getName()));
+        self.sendMessage(this.main.config.getFormattedString("translation.hugsSentStat", sent));
+        self.sendMessage(this.main.config.getFormattedString("translation.hugsReceivedStat", received));
     }
 
     public void recordCommand(CommandSender sender) {
 
         if (!sender.hasPermission("hugger.record")) {
-            sender.sendMessage(this.main.conf.getFormattedString("translation.permissionDenied", "hugger.record"));
+            sender.sendMessage(this.main.config.getFormattedString("translation.permissionDenied", "hugger.record"));
             return;
         }
 
-        Player recordHolder = Bukkit.getPlayer(this.main.sm.getRecordHolder());
+        Player recordHolder = Bukkit.getPlayer(this.main.statManager.getRecordHolder());
         String recordHolderName;
 
         if (recordHolder == null) {
-            recordHolderName = this.main.sm.getRecordHolder();
+            recordHolderName = this.main.statManager.getRecordHolder();
         } else {
             recordHolderName = recordHolder.getDisplayName();
         }
 
-        sender.sendMessage(this.main.conf.getFormattedString("translation.recordInfoTitle"));
-        sender.sendMessage(this.main.conf.getFormattedString("translation.recordInfo", recordHolderName,
-                Integer.toString(this.main.sm.getRecord())));
+        sender.sendMessage(this.main.config.getFormattedString("translation.recordInfoTitle"));
+        sender.sendMessage(this.main.config.getFormattedString("translation.recordInfo", recordHolderName,
+                Integer.toString(this.main.statManager.getRecord())));
     }
 }

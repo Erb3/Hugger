@@ -12,19 +12,18 @@ public class Title implements Effect{
     public void runEffect(CommandSender from, Player to, HashMap<String, String> args) {
         String fromName = Utils.generateCommandSenderName(from);
 
-        if (from instanceof Player) {
-            Player fromPlayer = (Player) from;
+        if (from instanceof Player fromPlayer) {
             sendTitle(fromPlayer, Utils.formatString(args.get("huggingPlayer"), to.getDisplayName()));
         }
 
         sendTitle(to, Utils.formatString(args.get("gotHugged"), fromName));
     }
 
-    private static void sendTitle(Player p, String oneliner) {
-        String[] lines = oneliner.split(";");
+    private static void sendTitle(Player player, String line) {
+        String[] lines = line.split(";");
 
         if (lines.length == 2) {
-        p.sendTitle(
+        player.sendTitle(
                 Utils.formatString(lines[0]),
                 Utils.formatString(lines[1]),
                 5,
@@ -32,7 +31,7 @@ public class Title implements Effect{
                 5
         );
         } else {
-            p.sendTitle(
+            player.sendTitle(
                     Utils.formatString(lines[0]),
                     "",
                     5,

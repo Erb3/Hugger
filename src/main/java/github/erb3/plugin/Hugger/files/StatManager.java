@@ -35,7 +35,7 @@ public class StatManager {
 
         statConfig = YamlConfiguration.loadConfiguration(statFile);
 
-        if (this.main.conf.getRawString("enableRecords").equalsIgnoreCase("true")) {
+        if (this.main.config.getRawString("enableRecords").equalsIgnoreCase("true")) {
             this.updateRecordReading();
         }
     }
@@ -112,7 +112,7 @@ public class StatManager {
     }
 
     public void updateRecord(CommandSender player) {
-        if (!this.main.conf.getRawString("enableRecords").equalsIgnoreCase("true")) {
+        if (!this.main.config.getRawString("enableRecords").equalsIgnoreCase("true")) {
             return;
         }
 
@@ -129,9 +129,9 @@ public class StatManager {
         }
 
         this.updateRecordReading();
-        player.sendMessage(this.main.conf.getFormattedString("translation.newRecord", currentRecordHolder));
+        player.sendMessage(this.main.config.getFormattedString("translation.newRecord", currentRecordHolder));
         this.main.getServer().broadcastMessage(
-                this.main.conf.getFormattedString("translation.newRecordBroadcast", player.getName(), Integer.toString(amountOfHugs)));
+                this.main.config.getFormattedString("translation.newRecordBroadcast", player.getName(), Integer.toString(amountOfHugs)));
     }
 
     public void increaseStats(CommandSender from, CommandSender to) {

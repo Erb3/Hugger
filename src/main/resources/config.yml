@@ -1,5 +1,4 @@
 enabled: "true"
-usePlaceholderAPI: "true"
 enableStatistics: "true"
 enableRecords: "true"
 selfhugCountsStatistics: "true"

@@ -14,8 +14,7 @@ public class ActionBar implements Effect {
     public void runEffect(CommandSender from, Player to, HashMap<String, String> args) {
         String fromName = Utils.generateCommandSenderName(from);
 
-        if (from instanceof Player) {
-            Player fromPlayer = (Player) from;
+        if (from instanceof Player fromPlayer) {
             fromPlayer.spigot().sendMessage(ChatMessageType.ACTION_BAR,
                     new TextComponent(Utils.formatString(args.get("huggingPlayer"), to.getDisplayName())));
         }
